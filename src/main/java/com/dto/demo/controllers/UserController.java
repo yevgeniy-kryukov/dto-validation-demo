@@ -56,11 +56,12 @@ public class UserController {
     ResponseEntity createUser(
         @Valid
         @RequestBody UserDto userDto) {
-        try {
-            return new ResponseEntity<>(this.userService.createUser(userDto), HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(this.errorMapper.createErrorMap(e), HttpStatus.BAD_REQUEST);
-        }
+//        try {
+//            return new ResponseEntity<>(this.userService.createUser(userDto), HttpStatus.CREATED);
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(this.errorMapper.createErrorMap(e), HttpStatus.BAD_REQUEST);
+//        }
+        return ResponseEntity.ok("good");
     }
 
     @PutMapping("/users/{id}")

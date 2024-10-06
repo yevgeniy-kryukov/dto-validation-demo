@@ -1,5 +1,6 @@
 package com.dto.demo.dtos;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.validation.constraints.Email;
@@ -9,6 +10,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.validator.constraints.UniqueElements;
 
 import com.dto.demo.validation.annotations.NotBlankIfAnotherFieldHasValue;
@@ -40,10 +42,16 @@ public class UserDto {
     @UniqueElements(message = "Book titles should be unique")
     private List<String> bookTitles;
 
+//    @Pattern(regexp = "(0[1-9]|[12][0-9]|3[01]).(0[1-9]|1[1,2]).(19|20)\\d{2}", message = "date not matched format 'dd.mm.yyyy'")
+//    private String dob;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="dd.MM.yyyy")
+    private LocalDate dob;
+
     public UserDto() {
     }
 
-    public UserDto(String id, String name, String email, int age, String degree, String url, List<String> bookTitles) {
+    public UserDto(String id, String name, String email, int age, String degree, String url, List<String> bookTitles,LocalDate dob) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -51,6 +59,7 @@ public class UserDto {
         this.degree = degree;
         this.url = url;
         this.bookTitles = bookTitles;
+        this.dob = dob;
     }
 
     public String getId() {
@@ -107,5 +116,13 @@ public class UserDto {
 
     public void setBookTitles(List<String> bookTitles) {
         this.bookTitles = bookTitles;
+    }
+
+    public LocalDate getDob() {
+        return dob;
+    }
+
+    public void setDob(LocalDate dob) {
+        this.dob = dob;
     }
 }

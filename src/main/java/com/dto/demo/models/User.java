@@ -1,5 +1,6 @@
 package com.dto.demo.models;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -29,6 +30,9 @@ public class User extends BaseEntity {
     private StudentUrl studentUrl;
 
     private List<Book> books;
+
+    @Column(name = "dob", nullable = false)
+    private Date dob;
 
     @Column(name="name", nullable = false)
     public String getName() {
@@ -89,5 +93,13 @@ public class User extends BaseEntity {
 
     public void setBooks(List<Book> books) {
         this.books = books;
+    }
+
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
     }
 }
